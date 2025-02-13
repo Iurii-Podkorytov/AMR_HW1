@@ -13,7 +13,7 @@ setup(
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
         (os.path.join('share', package_name, 'launch'), glob('launch/*.xml')),
-
+        (os.path.join('share', package_name, 'paths'), glob('paths/*.csv')),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -26,6 +26,7 @@ setup(
         'console_scripts': [
             'keyboard_control = my_robot_bringup.keyboard_control:main',
             'odom_listener = my_robot_bringup.odom_listener:main',
+            'path_publisher = my_robot_bringup.path_publisher:main',
         ],
     },
 )
