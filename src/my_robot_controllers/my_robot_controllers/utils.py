@@ -6,7 +6,7 @@ def get_position_from_odom(odom_data):
         odom_data.pose.pose.position.y
     ])
 
-def get_heading_from_odom(odom_data):
+def get_yaw_from_odom(odom_data):
     """Get the robot's heading angle (yaw) from odometry"""
     # Extract yaw from quaternion
     orientation = odom_data.pose.pose.orientation

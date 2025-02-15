@@ -8,8 +8,6 @@ class GenericController(Node, ABC):
     def __init__(self, node_name: str):
         """
         Base class for controller nodes
-        
-        :param node_name: Name of the node.
         """
         super().__init__(node_name)
         
@@ -28,15 +26,13 @@ class GenericController(Node, ABC):
             10 
         )
 
-        self.max_linear_vel = 0.5
+        self.max_linear_vel = 1.0
         self.max_angular_vel = 1.0
 
 
     def odom_callback(self, msg: Odometry):
         """
         Callback function for the /odom subscription.
-        
-        :param msg: The received Odometry message.
         """
         self.odom_data = msg
         self.control_loop()
@@ -45,8 +41,6 @@ class GenericController(Node, ABC):
     def compute_cmd_vel(self) -> Twist:
         """
         Abstract method to compute the command velocity based on the odometry data.
-        
-        :return: A Twist message representing the computed velocities.
         """
         pass
 

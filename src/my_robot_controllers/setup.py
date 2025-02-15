@@ -14,14 +14,16 @@ setup(
     install_requires=['setuptools'],
     zip_safe=True,
     maintainer='yura',
-    maintainer_email='yura@todo.todo',
-    description='TODO: Package description',
+    maintainer_email='i.podkorytov@innopolis.university',
+    description='Simple controllers for differential drive',
     license='TODO: License declaration',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
             'keyboard_control = my_robot_controllers.keyboard_controller:main',
             'pure_pursuit_control = my_robot_controllers.pure_pursuit_controller:main',
+            'proportional_control = my_robot_controllers.proportional_controller:main',
+            'stanley_control = my_robot_controllers.stanley_controller:main',
         ],
     },
 )
