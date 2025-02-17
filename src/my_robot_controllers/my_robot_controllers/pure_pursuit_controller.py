@@ -14,6 +14,7 @@ class PurePursuitController(GenericController):
         
         self.waypoints = np.array([(0, 0), (3, 0), (6, 4), (3, 4), (3, 1), (0, 3)])
         self.look_ahead_distance = 1
+        self.angular_gain = 2.0
 
     
     def segment_circle_intersect(self, center, p1, p2):
@@ -80,12 +81,12 @@ class PurePursuitController(GenericController):
                 self.get_logger().info("Goal reached!")
             else:
                 twist.linear.x = min(self.max_linear_vel * dist, self.max_linear_vel)
-                twist.angular.z = 2.0 * angle_error
+                twist.angular.z = self.angular_gain * angle_error
             self.get_logger().info(f"error={dist}")
 
         else:
             twist.linear.x = self.max_linear_vel
-            twist.angular.z = 2.0 * angle_error
+            twist.angular.z = self.angular_gain * angle_error
 
         return twist
 

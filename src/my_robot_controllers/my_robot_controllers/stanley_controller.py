@@ -15,8 +15,7 @@ class StanleyController(GenericController):
         self.waypoints = np.array([(0, 0), (3, 0), (6, 4), (3, 4), (3, 1), (0, 3)])
         self.current_waypoint_idx = 1
         self.cross_track_gain = 1
-        self.softening_constant = 0.1
-        self.tolerance = 5e-2
+        self.tolerance = 0.03
         self.max_linear_vel = 0.5
 
     def cross_track_error(self, robot_pos):
@@ -44,15 +43,15 @@ class StanleyController(GenericController):
         robot_pos = get_position_from_odom(self.odom_data)
         robot_yaw = get_yaw_from_odom(self.odom_data)
 
-        distance_error = np.linalg.norm(robot_pos - self.waypoints[self.current_waypoint_idx])
-        if distance_error <= self.tolerance:
-            self.current_waypoint_idx += 1
-
         if self.current_waypoint_idx >= len(self.waypoints):
             self.get_logger().info("Goal reached!")
             twist.linear.x = 0.0
             twist.angular.z = 0.0
             return twist
+        
+        distance_error = np.linalg.norm(robot_pos - self.waypoints[self.current_waypoint_idx])
+        if distance_error <= self.tolerance:
+            self.current_waypoint_idx += 1
 
         cross_track_error = self.cross_track_error(robot_pos)
         heading_error = self.heading_error(robot_yaw)

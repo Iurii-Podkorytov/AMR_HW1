@@ -24,6 +24,8 @@ setup(
             'pure_pursuit_control = my_robot_controllers.pure_pursuit_controller:main',
             'proportional_control = my_robot_controllers.proportional_controller:main',
             'stanley_control = my_robot_controllers.stanley_controller:main',
+            'mpc = my_robot_controllers.model_predictive_controller:main',
+            'plotter = my_robot_controllers.plotter:main',
         ],
     },
 )

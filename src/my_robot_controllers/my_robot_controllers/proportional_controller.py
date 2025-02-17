@@ -14,10 +14,10 @@ class ProportionalController(GenericController):
         
         self.waypoints = np.array([(0, 0), (3, 0), (6, 4), (3, 4), (3, 1), (0, 3)])
         self.current_waypoint_idx = 0
-        self.linear_tolerance = 1e-2
-        self.angular_tolerance = 1e-2
+        self.linear_tolerance = 0.03
+        self.angular_tolerance = 0.01
         self.angular_gain = 2
-        self.linear_gain = 0.5
+        self.linear_gain = 0.7
 
 
     def compute_cmd_vel(self):
